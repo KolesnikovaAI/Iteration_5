@@ -60,3 +60,87 @@ console.log(auto);
 let {manufacturer, model:m, ...rest} = auto;
 console.log(m);// Деструктуризация объекта. разбивает объект со "св-во:значение" на "переменная=значение"
 //rest оператор ...rest-собрал лишние параметры в массив rest
+
+
+/*class Samurai{
+    constructor(name){
+        this.name = name
+    }
+    hello(){
+        alert(this.name)
+    }
+}
+console.log(Samurai.prototype);
+console.log(Samurai.__proto__);
+console.log(Samurai.__proto__ === Function.prototype);*/
+
+
+/*Реализуйте класс Worker (Работник), который будет иметь следующие свойства: 
+name (имя), surname (фамилия), rate (ставка за день работы), days (количество отработанных дней). 
+Также класс должен иметь метод getSalary(), который будет выводить зарплату работника. 
+Зарплата - это произведение (умножение) ставки rate на количество отработанных дней days. 
+И метод getFullName() - имя и фамиля работника.*/
+class Worker{
+    constructor(name, surname, rate, days){
+        this.name = name,
+        this.surname = surname,
+        this.rate = rate,
+        this.days = days
+    }
+
+    getSalary() {
+        return this.rate * this.days
+    }
+
+    get getFullName(){
+        console.log(`${this.name}  ${this.surname}`)
+    }//Геттер, т.е. сво-во, поэтому вызывается как св-во без ()
+};
+let worker = new Worker ("Иван", "Иванов", 1500, 20);
+console.log(worker.name);
+console.log(worker.surname);
+console.log(worker.getFullName);
+console.log(worker.getSalary());
+
+/*Напишите новый класс Boss, этот класс наследуется от класса Worker и прошлого задания. 
+Появляется новые свойство: workers - количество работников. 
+И зарплата считается по другому: произведение (умножение) ставки rate на количество отработанных дней и 
+на количество работников.*/
+
+class Boss extends Worker {
+    constructor(name, surname, rate, days, workers){
+        super(name, surname, rate, days);
+        this.workers = workers;
+    }//
+
+    get getFullName(){
+        super.getFullName;
+    }//
+
+    getSalary() {
+        return this.rate * this.days * this.workers
+    }//
+}
+
+const boss = new Boss('Петр', 'Петров', 1000, 20, 20);
+console.log(boss.name); 
+console.log(boss.surname); 
+console.log(boss.getFullName); 
+console.log(boss.rate); 
+console.log(boss.days); 
+console.log(boss.workers); 
+console.log(boss.getSalary()); 
+
+function* numberGen(n = 10){
+    for (let i = 0; i < n; i++){
+        yield i
+    }
+};
+const num = numberGen(4);
+console.log(num.next());
+console.log(num.next());
+console.log(num.next());
+console.log(num.next());
+console.log(num.next());
+
+
